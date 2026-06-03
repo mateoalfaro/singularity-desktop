@@ -2,18 +2,18 @@ BUILD_DIR = build
 LABWC_DIR = subprojects/labwc
 LABWC_BUILD = $(LABWC_DIR)/build
 
-all: $(BUILD_DIR) compile
+all: compile
 
-$(BUILD_DIR):
-	meson setup $(BUILD_DIR)
+$(BUILD_DIR)/build.ninja:
+	meson setup $(BUILD_DIR) || { rm -rf $(BUILD_DIR); meson setup $(BUILD_DIR); }
 
-$(LABWC_BUILD):
-	meson setup $(LABWC_BUILD) $(LABWC_DIR) --prefix=/usr --buildtype=release
+$(LABWC_BUILD)/build.ninja:
+	meson setup $(LABWC_BUILD) $(LABWC_DIR) --prefix=/usr --buildtype=release || { rm -rf $(LABWC_BUILD); meson setup $(LABWC_BUILD) $(LABWC_DIR) --prefix=/usr --buildtype=release; }
 
-labwc: $(LABWC_BUILD)
+labwc: $(LABWC_BUILD)/build.ninja
 	meson compile -C $(LABWC_BUILD)
 
-compile: $(BUILD_DIR) labwc
+compile: $(BUILD_DIR)/build.ninja labwc
 	meson compile -C $(BUILD_DIR)
 
 clean:
