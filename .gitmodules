@@ -1,31 +1,31 @@
 [submodule "subprojects/libsingularity"]
 	path = subprojects/libsingularity
-	url = git@github.com:singularityos-lab/libsingularity.git
+	url = https://github.com/singularityos-lab/libsingularity.git
 	branch = main
 
 [submodule "subprojects/singularity-files"]
 	path = subprojects/singularity-files
-	url = git@github.com:singularityos-lab/singularity-files.git
+	url = https://github.com/singularityos-lab/singularity-files.git
 	branch = main
 
 [submodule "subprojects/singularity-leafs"]
 	path = subprojects/singularity-leafs
-	url = git@github.com:singularityos-lab/singularity-leafs.git
+	url = https://github.com/singularityos-lab/singularity-leafs.git
 	branch = main
 
 [submodule "subprojects/singularity-polkit-agent"]
 	path = subprojects/singularity-polkit-agent
-	url = git@github.com:singularityos-lab/singularity-polkit-agent.git
+	url = https://github.com/singularityos-lab/singularity-polkit-agent.git
 	branch = main
 
 [submodule "subprojects/singularity-calculator"]
 	path = subprojects/singularity-calculator
-	url = git@github.com:singularityos-lab/singularity-calculator.git
+	url = https://github.com/singularityos-lab/singularity-calculator.git
 	branch = main
 
 [submodule "subprojects/xdg-desktop-portal-singularity"]
 	path = subprojects/xdg-desktop-portal-singularity
-	url = git@github.com:singularityos-lab/xdg-desktop-portal-singularity.git
+	url = https://github.com/singularityos-lab/xdg-desktop-portal-singularity.git
 	branch = main
 
 [submodule "subprojects/labwc"]
@@ -34,11 +34,11 @@
 	branch = singularity
 [submodule "subprojects/singularity-calendar"]
 	path = subprojects/singularity-calendar
-	url = git@github.com:singularityos-lab/singularity-calendar.git
+	url = https://github.com/singularityos-lab/singularity-calendar.git
 	branch = main
 [submodule "subprojects/singularity-demo"]
 	path = subprojects/singularity-demo
-	url = git@github.com:singularityos-lab/singularity-demo.git
+	url = https://github.com/singularityos-lab/singularity-demo.git
 	branch = main
 [submodule "subprojects/singularity-edit"]
 	path = subprojects/singularity-edit
@@ -46,11 +46,11 @@
 	branch = main
 [submodule "subprojects/singularity-git"]
 	path = subprojects/singularity-git
-	url = git@github.com:singularityos-lab/singularity-git.git
+	url = https://github.com/singularityos-lab/singularity-git.git
 	branch = main
 [submodule "subprojects/singularity-keyring"]
 	path = subprojects/singularity-keyring
-	url = git@github.com:singularityos-lab/singularity-keyring.git
+	url = https://github.com/singularityos-lab/singularity-keyring.git
 	branch = main
 [submodule "subprojects/singularity-monitor"]
 	path = subprojects/singularity-monitor
@@ -62,7 +62,7 @@
 	branch = main
 [submodule "subprojects/singularity-photos"]
 	path = subprojects/singularity-photos
-	url = git@github.com:singularityos-lab/singularity-photos.git
+	url = https://github.com/singularityos-lab/singularity-photos.git
 	branch = main
 [submodule "subprojects/singularity-store"]
 	path = subprojects/singularity-store
@@ -74,33 +74,33 @@
 	branch = main
 [submodule "subprojects/singularity-write"]
 	path = subprojects/singularity-write
-	url = git@github.com:singularityos-lab/singularity-write.git
+	url = https://github.com/singularityos-lab/singularity-write.git
 	branch = main
 [submodule "subprojects/singularity-greeter"]
 	path = subprojects/singularity-greeter
-	url = git@github.com:singularityos-lab/singularity-greeter.git
+	url = https://github.com/singularityos-lab/singularity-greeter.git
 	branch = main
 [submodule "subprojects/singularity-wallpapers"]
 	path = subprojects/singularity-wallpapers
-	url = git@github.com:singularityos-lab/singularity-wallpapers.git
+	url = https://github.com/singularityos-lab/singularity-wallpapers.git
 	branch = main
 [submodule "subprojects/singularity-themes"]
 	path = subprojects/singularity-themes
-	url = git@github.com:singularityos-lab/singularity-themes.git
+	url = https://github.com/singularityos-lab/singularity-themes.git
 	branch = main
 [submodule "subprojects/singularity-plugins"]
 	path = subprojects/singularity-plugins
-	url = git@github.com:singularityos-lab/singularity-plugins.git
+	url = https://github.com/singularityos-lab/singularity-plugins.git
 	branch = main
 [submodule "subprojects/singularity-widgets"]
 	path = subprojects/singularity-widgets
-	url = git@github.com:singularityos-lab/singularity-widgets.git
+	url = https://github.com/singularityos-lab/singularity-widgets.git
 	branch = main
 [submodule "subprojects/singularity-session"]
 	branch = main
 	path = subprojects/singularity-session
-	url = git@github.com:singularityos-lab/singularity-session.git
+	url = https://github.com/singularityos-lab/singularity-session.git
 [submodule "subprojects/singularity-shell"]
 	path = subprojects/singularity-shell
-	url = git@github.com:singularityos-lab/singularity-shell.git
+	url = https://github.com/singularityos-lab/singularity-shell.git
 	branch = main
