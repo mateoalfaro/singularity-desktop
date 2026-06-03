@@ -14,6 +14,9 @@ labwc: $(LABWC_BUILD)/build.ninja
 	meson compile -C $(LABWC_BUILD)
 
 compile: $(BUILD_DIR)/build.ninja labwc
+	ninja -C $(BUILD_DIR) subprojects/libsingularity/Singularity-1.0.gir
+	mkdir -p $(HOME)/.local/share/gir-1.0
+	cp $(BUILD_DIR)/subprojects/libsingularity/Singularity-1.0.gir $(HOME)/.local/share/gir-1.0/
 	meson compile -C $(BUILD_DIR)
 
 clean:
