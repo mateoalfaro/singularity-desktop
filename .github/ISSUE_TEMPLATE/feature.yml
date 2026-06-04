@@ -1,7 +1,12 @@
 name: Feature request
 description: Suggest a new feature or an improvement
+title: "[Feature]: "
 labels: ["enhancement"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Give the request a **specific title** that names the feature, not `please add stuff`.
   - type: textarea
     id: problem
     attributes:
@@ -13,6 +18,8 @@ body:
     id: solution
     attributes:
       label: Proposed solution
+    validations:
+      required: true
   - type: textarea
     id: alternatives
     attributes:
@@ -28,3 +35,5 @@ body:
         - Build / install
         - Compositor / labwc
         - Other / not sure
+    validations:
+      required: true

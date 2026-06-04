@@ -1,5 +1,6 @@
 name: Feedback
 description: Share an impression, an idea, or general feedback
+title: "[Feedback]: "
 labels: ["feedback"]
 body:
   - type: textarea
@@ -20,3 +21,5 @@ body:
         - Compositor / labwc
         - The website / docs
         - Other / not sure
+    validations:
+      required: true
