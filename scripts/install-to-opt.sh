@@ -168,6 +168,10 @@ if [ ! -f "$OPT_ICONS/hicolor/index.theme" ]; then
 fi
 run0 gtk-update-icon-cache -f "$OPT_ICONS/hicolor" 2>/dev/null || true
 
+if [ -d "$PROJECT_DIR/subprojects/singularity-themes/Singularity" ]; then
+    cp -r "$PROJECT_DIR/subprojects/singularity-themes/Singularity" "$OPT_ICONS/"
+fi
+
 echo "Installing GTK themes..."
 for theme_dir in "$PROJECT_DIR/subprojects/singularity-themes/themes"/*/; do
     theme_name=$(basename "$theme_dir")
