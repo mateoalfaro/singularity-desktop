@@ -55,7 +55,13 @@ body:
     id: logs
     attributes:
       label: Logs / output
-      description: Paste any relevant logs or terminal output.
+      description: |
+        Attach or paste the session logs. They live in `~/.local/state/singularity/`:
+        `desktop.log` (shell), `session.log` (session launcher) and `polkit.log`, each
+        with a `.1` copy of the previous session. From a TTY: `cat ~/.local/state/singularity/desktop.log`.
+
+        These can contain window titles, file paths and network or account names, so
+        review them and redact anything you would rather not share.
       render: shell
   - type: checkboxes
     id: checks
