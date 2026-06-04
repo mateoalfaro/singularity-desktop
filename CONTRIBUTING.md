@@ -109,22 +109,24 @@ There is no automated test suite yet (Vala/GTK4 UI testing is hard). Please:
 
 ---
 
-## Commit Style
+## Commit messages
+
+Commits follow Conventional Commits:
 
 ```
-component: short imperative summary (max 72 chars)
-
-Longer description if needed. Explain WHY, not WHAT (the diff shows what).
-
-Co-authored-by: Your Name <email@example.com>
+<type>: <subject>
 ```
 
-Examples:
-- `dock: fix timer leak in dispose()`
-- `displays: add VRR toggle for adaptive-sync capable monitors`
-- `libsingularity: add AsyncThumbnail widget`
+`<type>` is one of `feat`, `fix`, `chore`, `docs`, `build`, `ci`, `refactor`, `perf`, `style`, `test`, `revert`. Keep `<subject>` short, lowercase and in English. An optional scope is allowed: `<type>(<scope>): <subject>`.
 
----
+When a commit closes an issue, use `<type>[closes #ID]: <issue title>`, for example:
+
+```
+fix[closes #2]: Discord doesn't open on Singularity desktop
+```
+
+Do not add co-author or attribution trailers.
+
 
 ## Reporting Bugs
 
