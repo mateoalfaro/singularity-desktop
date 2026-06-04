@@ -301,6 +301,30 @@ for s in singularity-desktop-session singularity-labwc-session; do
     echo "  $s"
 done
 
+echo "Registering the desktop session..."
+SESSION_ENTRY="[Desktop Entry]
+Name=Singularity
+Comment=Singularity Desktop Environment
+Exec=$OPT_BIN/singularity-labwc-session
+TryExec=$OPT_BIN/singularity-desktop
+Type=Application
+DesktopNames=Singularity"
+if mkdir -p /usr/share/wayland-sessions 2>/dev/null && \
+   printf '%s\n' "$SESSION_ENTRY" > /usr/share/wayland-sessions/singularity.desktop 2>/dev/null; then
+    echo "  /usr/share/wayland-sessions/singularity.desktop"
+else
+    mkdir -p "$OPT_SHARE/wayland-sessions"
+    printf '%s\n' "$SESSION_ENTRY" > "$OPT_SHARE/wayland-sessions/singularity.desktop"
+    echo "  $OPT_SHARE/wayland-sessions/singularity.desktop (/usr is read-only)"
+    if mkdir -p /etc/systemd/system/gdm.service.d 2>/dev/null; then
+        printf '%s\n' "[Service]" \
+            "Environment=\"XDG_DATA_DIRS=/var/lib/flatpak/exports/share:$OPT_SHARE:/usr/local/share:/usr/share\"" \
+            > /etc/systemd/system/gdm.service.d/singularity-session.conf
+        echo "  GDM XDG_DATA_DIRS override"
+        command -v systemctl >/dev/null 2>&1 && systemctl daemon-reload 2>/dev/null || true
+    fi
+fi
+
 echo "Installing per-user config for $REAL_USER..."
 
 run_as_user mkdir -p "$REAL_HOME/.config/labwc"
