@@ -11,7 +11,6 @@ $(LABWC_BUILD)/build.ninja:
 	meson setup $(LABWC_BUILD) $(LABWC_DIR) --prefix=/usr --buildtype=release -Dxwayland=enabled --force-fallback-for=wlroots-0.20 || { rm -rf $(LABWC_BUILD); meson setup $(LABWC_BUILD) $(LABWC_DIR) --prefix=/usr --buildtype=release -Dxwayland=enabled --force-fallback-for=wlroots-0.20; }
 
 labwc: $(LABWC_BUILD)/build.ninja
-	@meson setup $(LABWC_BUILD) --reconfigure --force-fallback-for=wlroots-0.20 >/dev/null 2>&1 || true
 	meson compile -C $(LABWC_BUILD)
 
 compile: $(BUILD_DIR)/build.ninja labwc
@@ -61,4 +60,11 @@ deploy-host:
 	@echo "      the install and deploy processes have been unified."
 	@$(MAKE) install
 
-.PHONY: all compile labwc clean install run reconfigure schemas deploy-host install-session
+install-greeter:
+	@if [ -n "$$container" ]; then \
+		host-spawn run0 bash $(CURDIR)/scripts/install-greeter.sh; \
+	else \
+		run0 bash $(CURDIR)/scripts/install-greeter.sh; \
+	fi
+
+.PHONY: all compile labwc clean install run reconfigure schemas deploy-host install-session install-greeter
