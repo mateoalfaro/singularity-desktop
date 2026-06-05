@@ -385,7 +385,6 @@ Environment=GSK_RENDERER=gl
 Environment=GTK_A11Y=none
 Environment=XDG_CURRENT_DESKTOP=Singularity
 Environment=LD_LIBRARY_PATH=/opt/local/lib
-Environment=LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk4-layer-shell.so.0
 ExecStart=$OPT_BIN/singularity-portal
 Restart=on-failure
 RestartSec=2
