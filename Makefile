@@ -8,7 +8,7 @@ $(BUILD_DIR)/build.ninja:
 	meson setup $(BUILD_DIR) || { rm -rf $(BUILD_DIR); meson setup $(BUILD_DIR); }
 
 $(LABWC_BUILD)/build.ninja:
-	meson setup $(LABWC_BUILD) $(LABWC_DIR) --prefix=/usr --buildtype=release -Dxwayland=enabled || { rm -rf $(LABWC_BUILD); meson setup $(LABWC_BUILD) $(LABWC_DIR) --prefix=/usr --buildtype=release -Dxwayland=enabled; }
+	meson setup $(LABWC_BUILD) $(LABWC_DIR) --prefix=/usr --buildtype=release -Dxwayland=enabled --force-fallback-for=wlroots-0.20 || { rm -rf $(LABWC_BUILD); meson setup $(LABWC_BUILD) $(LABWC_DIR) --prefix=/usr --buildtype=release -Dxwayland=enabled --force-fallback-for=wlroots-0.20; }
 
 labwc: $(LABWC_BUILD)/build.ninja
 	meson compile -C $(LABWC_BUILD)
@@ -33,7 +33,7 @@ run: compile
 
 reconfigure:
 	meson setup $(BUILD_DIR) --reconfigure
-	meson setup $(LABWC_BUILD) $(LABWC_DIR) --reconfigure
+	meson setup $(LABWC_BUILD) $(LABWC_DIR) --reconfigure --force-fallback-for=wlroots-0.20
 
 schemas:
 	glib-compile-schemas data/
