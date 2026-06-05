@@ -1,5 +1,5 @@
 #!/bin/bash
-# Deploy Singularity Desktop to /opt/local. Run via: make deploy-host
+# Deploy Singularity Desktop to /opt/local. Run via: make install
 
 set -e
 
