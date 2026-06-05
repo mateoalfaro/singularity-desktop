@@ -83,7 +83,7 @@ body:
       label: Logs / output
       description: |
         Paste the session logs. They live in `~/.local/state/singularity/`:
-        `desktop.log` (shell), `session.log` (session launcher) and `polkit.log`, each
+        `singularity-desktop.log` (shell), `session.log` (session launcher) and `polkit.log`, each
         with a `.1` copy of the previous session. From a TTY: `cat ~/.local/state/singularity/desktop.log`.
 
         These can contain window titles, file paths and network or account names, so
