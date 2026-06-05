@@ -253,14 +253,30 @@ Interfaces=org.freedesktop.impl.portal.Screenshot;org.freedesktop.impl.portal.Se
 UseIn=Singularity
 EOF
 
-cat > "$OPT_DBUS/org.freedesktop.impl.portal.desktop.singularity.service" <<EOF
+SYS_DBUS=""
+for d in /usr/share/dbus-1/services /usr/local/share/dbus-1/services; do
+    if mkdir -p "$d" 2>/dev/null && [ -w "$d" ]; then
+        SYS_DBUS="$d"
+        break
+    fi
+done
+if [ -z "$SYS_DBUS" ]; then
+    SYS_DBUS="$OPT_DBUS"
+    echo "  WARNING: no writable system dbus-1/services dir; using $SYS_DBUS"
+    echo "  (the session bus only scans XDG_DATA_DIRS at startup, so the portal"
+    echo "   may be unreachable until $OPT_SHARE is on the bus search path)"
+else
+    echo "  D-Bus activation services -> $SYS_DBUS"
+fi
+
+cat > "$SYS_DBUS/org.freedesktop.impl.portal.desktop.singularity.service" <<EOF
 [D-BUS Service]
 Name=org.freedesktop.impl.portal.desktop.singularity
 Exec=$OPT_BIN/singularity-portal
 SystemdService=xdg-desktop-portal-singularity.service
 EOF
 
-cat > "$OPT_DBUS/io.github.mirkobrombin.ush.Portal.service" <<EOF
+cat > "$SYS_DBUS/io.github.mirkobrombin.ush.Portal.service" <<EOF
 [D-BUS Service]
 Name=io.github.mirkobrombin.ush.Portal
 Exec=$OPT_BIN/singularity-portal
@@ -275,6 +291,8 @@ export GSK_RENDERER=gl
 export GTK_A11Y=none
 export XDG_CURRENT_DESKTOP=Singularity
 export LD_LIBRARY_PATH="/opt/local/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export GSETTINGS_SCHEMA_DIR="/opt/local/share/glib-2.0/schemas${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
+export XDG_DATA_DIRS="/opt/local/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 # Preload gtk4-layer-shell before libwayland-client or layer-shell init fails here.
 for ls in /usr/lib/x86_64-linux-gnu/libgtk4-layer-shell.so.0 \
           /usr/lib64/libgtk4-layer-shell.so.0 \
@@ -345,14 +363,16 @@ org.freedesktop.impl.portal.ScreenCast=singularity
 EOF
 chown "$REAL_USER:$REAL_USER" "$PORTALS_CONF_DIR/singularity-portals.conf"
 
-SYSTEMD_USER_DIR="$REAL_HOME/.config/systemd/user"
-run_as_user mkdir -p "$SYSTEMD_USER_DIR"
+ETC_USER_DIR="/etc/systemd/user"
+mkdir -p "$ETC_USER_DIR"
 
 run_as_user systemctl --user stop singularity-polkit-agent.service 2>/dev/null || true
 run_as_user systemctl --user disable singularity-polkit-agent.service 2>/dev/null || true
-rm -f "$SYSTEMD_USER_DIR/singularity-polkit-agent.service"
+rm -f "$REAL_HOME/.config/systemd/user/singularity-polkit-agent.service"
+rm -f "$REAL_HOME/.config/systemd/user/singularity-keyring.service" \
+      "$REAL_HOME/.config/systemd/user/xdg-desktop-portal-singularity.service"
 
-cat > "$SYSTEMD_USER_DIR/singularity-keyring.service" <<EOF
+cat > "$ETC_USER_DIR/singularity-keyring.service" <<EOF
 [Unit]
 Description=Singularity Keyring (Secret Service)
 Documentation=https://specifications.freedesktop.org/secret-service/
@@ -368,9 +388,8 @@ RestartSec=2
 [Install]
 WantedBy=graphical-session.target
 EOF
-chown "$REAL_USER:$REAL_USER" "$SYSTEMD_USER_DIR/singularity-keyring.service"
 
-cat > "$SYSTEMD_USER_DIR/xdg-desktop-portal-singularity.service" <<EOF
+cat > "$ETC_USER_DIR/xdg-desktop-portal-singularity.service" <<EOF
 [Unit]
 Description=Singularity XDG Desktop Portal
 PartOf=graphical-session.target
@@ -392,13 +411,19 @@ RestartSec=2
 [Install]
 WantedBy=graphical-session.target
 EOF
-chown "$REAL_USER:$REAL_USER" "$SYSTEMD_USER_DIR/xdg-desktop-portal-singularity.service"
 
+cat > "$ETC_USER_DIR/singularity-session.target" <<EOF
+[Unit]
+Description=Singularity session
+BindsTo=graphical-session.target
+Before=graphical-session.target
+Wants=graphical-session-pre.target
+After=graphical-session-pre.target
+EOF
+
+systemctl --global enable singularity-keyring.service xdg-desktop-portal-singularity.service 2>/dev/null || true
+systemctl daemon-reload 2>/dev/null || true
 run_as_user systemctl --user daemon-reload 2>/dev/null || true
-run_as_user systemctl --user enable singularity-keyring.service 2>/dev/null || true
-run_as_user systemctl --user restart singularity-keyring.service 2>/dev/null || true
-run_as_user systemctl --user enable xdg-desktop-portal-singularity.service 2>/dev/null || true
-run_as_user systemctl --user restart xdg-desktop-portal-singularity.service 2>/dev/null || true
 run_as_user systemctl --user restart xdg-desktop-portal.service 2>/dev/null || true
 
 LEGACY="$REAL_HOME/.local/singularity"

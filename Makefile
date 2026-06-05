@@ -11,6 +11,7 @@ $(LABWC_BUILD)/build.ninja:
 	meson setup $(LABWC_BUILD) $(LABWC_DIR) --prefix=/usr --buildtype=release -Dxwayland=enabled --force-fallback-for=wlroots-0.20 || { rm -rf $(LABWC_BUILD); meson setup $(LABWC_BUILD) $(LABWC_DIR) --prefix=/usr --buildtype=release -Dxwayland=enabled --force-fallback-for=wlroots-0.20; }
 
 labwc: $(LABWC_BUILD)/build.ninja
+	@meson setup $(LABWC_BUILD) --reconfigure --force-fallback-for=wlroots-0.20 >/dev/null 2>&1 || true
 	meson compile -C $(LABWC_BUILD)
 
 compile: $(BUILD_DIR)/build.ninja labwc
