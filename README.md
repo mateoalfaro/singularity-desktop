@@ -17,6 +17,9 @@ sharing the [libsingularity](subprojects/libsingularity) toolkit.
 - dbusmenu-glib-0.4, atspi-2, tracker-sparql-3.0, gudev-1.0, libcrypt
 - PAM (`libpam`, lock screen authentication)
 - labwc (built as a subproject) and xdg-desktop-portal-singularity
+- labwc statically builds its bundled wlroots (a system wlroots package is not
+  required). Its DRM backend needs hwdata, libdisplay-info, gbm (Mesa), libdrm,
+  libseat, and libudev; on Fedora hwdata's pkg-config file is in `hwdata-devel`
 
 ## Build & Install
 
