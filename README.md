@@ -10,6 +10,7 @@ sharing the [libsingularity](subprojects/libsingularity) toolkit.
 - [Meson](https://mesonbuild.com/) >= 0.59
 - [Vala](https://vala.dev/) compiler
 - GTK4 >= 4.6 and gtk4-layer-shell
+- libdecor (runtime, client-side window decorations for GTK and Qt apps)
 - wayland-client and wayland-scanner
 - libnm, upower-glib, libpulse, goa-1.0, polkit-gobject-1
 - gnome-desktop-4, libsoup-3.0, json-glib-1.0, libpeas-2
