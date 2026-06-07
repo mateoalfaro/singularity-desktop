@@ -311,5 +311,14 @@
       <default>true</default>
       <summary>Saved animations preference before extreme mode</summary>
     </key>
+    <key name="mouse-acceleration" type="b">
+      <default>true</default>
+      <summary>Pointer acceleration</summary>
+      <description>When disabled, the mouse uses a flat acceleration profile.</description>
+    </key>
+    <key name="natural-scrolling" type="b">
+      <default>false</default>
+      <summary>Natural scrolling on touchpad</summary>
+    </key>
   </schema>
 </schemalist>
