@@ -325,5 +325,10 @@
       <summary>Icon theme name</summary>
       <description>Icon theme used by the shell and all applications.</description>
     </key>
+    <key name="rendering-mode" type="s">
+      <default>"auto"</default>
+      <summary>Graphics rendering mode</summary>
+      <description>auto, hardware or software. Software is a safe fallback for GPUs whose driver crashes the hardware renderer.</description>
+    </key>
   </schema>
 </schemalist>
