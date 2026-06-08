@@ -233,6 +233,25 @@ for theme_dir in "$PROJECT_DIR/subprojects/singularity-themes/themes"/*/; do
     [ "$(basename "$theme_dir")" = "SingularityExample" ] && continue
     [ -d "$theme_dir" ] && cp -r "$theme_dir" "$OPT_THEMES/" && echo "  $(basename "$theme_dir")"
 done
+# The full Singularity GTK theme for third-party apps is built from the Orchis
+# widget skeleton recoloured with libsingularity tokens. The CSS is generated
+# by sassc at build time (lives in the build dir); the widget assets and
+# index.theme are static source. Assemble the complete theme tree here.
+SING_GTK_THEME="$OPT_THEMES/Singularity"
+SING_GTK_SRC="$PROJECT_DIR/subprojects/libsingularity/data/gtk-theme"
+SING_GTK_BUILD="$BUILD/subprojects/libsingularity/data/gtk-theme/gtk"
+if [ -f "$SING_GTK_BUILD/3.0/gtk.css" ]; then
+    for ver in 3.0 4.0; do
+        dir="$SING_GTK_THEME/gtk-$ver"
+        mkdir -p "$dir/assets"
+        cp "$SING_GTK_BUILD/$ver/gtk.css"      "$dir/gtk.css"
+        cp "$SING_GTK_BUILD/$ver/gtk-dark.css" "$dir/gtk-dark.css"
+        cp -r "$SING_GTK_SRC/gtk/assets/." "$dir/assets/"
+        cp -r "$SING_GTK_SRC/gtk/scalable"  "$dir/assets/"
+    done
+    cp "$SING_GTK_SRC/index.theme" "$SING_GTK_THEME/index.theme"
+    echo "  Singularity GTK theme"
+fi
 
 echo "Installing wallpapers..."
 WP_DIR="$PROJECT_DIR/subprojects/singularity-wallpapers"
@@ -430,6 +449,27 @@ LEGACY="$REAL_HOME/.local/singularity"
 if [ -d "$LEGACY" ]; then
     echo "Cleaning up legacy install at $LEGACY ..."
     rm -rf "$LEGACY"
+fi
+# Stale per-user D-Bus service / portal files from old installs shadow the
+# system ones (the home XDG dir wins), and their Exec points at the removed
+# legacy tree, so the portal backend fails to activate and Settings falls back
+# to another backend (wrong accent, wrong file chooser). Drop them.
+STALE_DBUS="$REAL_HOME/.local/share/dbus-1/services/org.freedesktop.impl.portal.desktop.singularity.service"
+STALE_PORTAL="$REAL_HOME/.local/share/xdg-desktop-portal/portals/singularity.portal"
+for stale in "$STALE_DBUS" "$STALE_PORTAL"; do
+    if [ -f "$stale" ]; then
+        echo "Removing stale per-user portal file $stale ..."
+        rm -f "$stale"
+    fi
+done
+
+# A Singularity theme under ~/.local/share/themes shadows the one we install to
+# /opt (XDG_DATA_HOME wins over XDG_DATA_DIRS). The full Singularity theme now
+# ships from /opt only; drop any per-user copy so the fresh one is picked up.
+STALE_THEME="$REAL_HOME/.local/share/themes/Singularity"
+if [ -d "$STALE_THEME" ]; then
+    echo "Removing stale per-user theme $STALE_THEME ..."
+    rm -rf "$STALE_THEME"
 fi
 
 echo ""

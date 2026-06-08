@@ -154,6 +154,12 @@
       <description>Whether to show the battery charge percentage next to the battery icon in the panel.</description>
     </key>
 
+    <key name="auto-gtk-theming" type="b">
+      <default>false</default>
+      <summary>Use the Singularity GTK theme for all apps</summary>
+      <description>When enabled, GTK apps use the Singularity theme (built from the same tokens as the shell) with the dark/light preference synced, and the manual GTK theme overrides are locked.</description>
+    </key>
+
     <key name="settings-in-window" type="b">
       <default>false</default>
       <summary>Open Settings in window</summary>
