@@ -148,6 +148,12 @@
       <description>Whether to show icons on the desktop from ~/Desktop folder.</description>
     </key>
 
+    <key name="show-battery-percentage" type="b">
+      <default>false</default>
+      <summary>Show Battery Percentage</summary>
+      <description>Whether to show the battery charge percentage next to the battery icon in the panel.</description>
+    </key>
+
     <key name="settings-in-window" type="b">
       <default>false</default>
       <summary>Open Settings in window</summary>
