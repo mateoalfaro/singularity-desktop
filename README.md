@@ -11,6 +11,9 @@ sharing the [libsingularity](subprojects/libsingularity) toolkit.
 - [Vala](https://vala.dev/) compiler
 - GTK4 >= 4.6 and gtk4-layer-shell
 - libdecor (runtime, client-side window decorations for GTK and Qt apps)
+- Qt 6 xdgdesktopportal platform theme plugin (runtime, so Qt apps follow the
+  dark/light and accent settings via the XDG settings portal). It ships with Qt
+  6 qtbase: Fedora `qt6-qtbase-gui`, Arch `qt6-base`, Debian/Ubuntu `qt6-base`
 - wayland-client and wayland-scanner
 - libnm, upower-glib, libpulse, goa-1.0, polkit-gobject-1
 - gnome-desktop-4, libsoup-3.0, json-glib-1.0, libpeas-2
