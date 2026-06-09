@@ -347,6 +347,11 @@
       <summary>Cursor theme name</summary>
       <description>Mouse cursor theme used by the shell and all applications.</description>
     </key>
+    <key name="global-menu-enabled" type="b">
+      <default>true</default>
+      <summary>Enable the global menu</summary>
+      <description>When enabled, application menus appear in the top panel. When disabled, applications show their own in-window menu bar instead (takes effect on next login).</description>
+    </key>
     <key name="rendering-mode" type="s">
       <default>"auto"</default>
       <summary>Graphics rendering mode</summary>
