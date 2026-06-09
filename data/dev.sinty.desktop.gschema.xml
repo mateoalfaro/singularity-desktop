@@ -342,6 +342,11 @@
       <summary>Icon theme name</summary>
       <description>Icon theme used by the shell and all applications.</description>
     </key>
+    <key name="cursor-theme" type="s">
+      <default>"Adwaita"</default>
+      <summary>Cursor theme name</summary>
+      <description>Mouse cursor theme used by the shell and all applications.</description>
+    </key>
     <key name="rendering-mode" type="s">
       <default>"auto"</default>
       <summary>Graphics rendering mode</summary>
