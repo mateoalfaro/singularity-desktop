@@ -207,7 +207,7 @@
       <description>Whether experimental features are visible.</description>
     </key>
     <key name="enabled-plugins" type="as">
-      <default>['mpris-dock', 'downloads-dock', 'telegram-dock', 'launcher-entry-dock', 'tray-icons', 'emoji-search', 'tailscale']</default>
+      <default>['mpris-dock', 'downloads-dock', 'telegram-dock', 'launcher-entry-dock', 'tray-icons', 'emoji-search', 'tailscale', 'exe-icon']</default>
       <summary>Enabled Plugins</summary>
       <description>List of enabled plugin module names.</description>
     </key>
