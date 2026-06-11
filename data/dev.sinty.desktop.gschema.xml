@@ -50,6 +50,11 @@
       <summary>Flat top panel</summary>
       <description>When enabled, the top panel has a solid black background instead of being transparent.</description>
     </key>
+    <key name="panel-flat-opacity" type="i">
+      <default>100</default>
+      <summary>Flat panel opacity</summary>
+      <description>Opacity (0-100) of the flat top panel background. Only applies when the flat panel is enabled.</description>
+    </key>
     <key name="dock-gap" type="i">
       <default>8</default>
       <summary>Dock gap</summary>
