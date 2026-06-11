@@ -74,6 +74,11 @@
       <summary>Extended Taskbar Mode</summary>
       <description>Show window titles next to icons in panel mode.</description>
     </key>
+    <key name="dock-window-previews" type="b">
+      <default>false</default>
+      <summary>Window Previews on Hover</summary>
+      <description>Show live window previews when hovering a dock icon that has more than one open window.</description>
+    </key>
     <key name="background-picture-uri" type="s">
       <default>''</default>
       <summary>URI of the background picture</summary>
