@@ -14,6 +14,12 @@ sharing the [libsingularity](subprojects/libsingularity) toolkit.
 - Qt 6 xdgdesktopportal platform theme plugin (runtime, so Qt apps follow the
   dark/light and accent settings via the XDG settings portal). It ships with Qt
   6 qtbase: Fedora `qt6-qtbase-gui`, Arch `qt6-base`, Debian/Ubuntu `qt6-base`
+- `appmenu-gtk-module` (runtime, optional) so third-party GTK apps publish their
+  menu bar to the panel global menu. Debian/Ubuntu `appmenu-gtk3-module` (plus
+  `appmenu-gtk2-module` for GTK 2), Arch `appmenu-gtk-module` (AUR); on Fedora it
+  is only in COPR. First-party Singularity apps do not need it. Firefox exports
+  its menu over X11 only, so its global menu shows only under XWayland
+  (`MOZ_ENABLE_WAYLAND=0`), not native Wayland
 - wayland-client and wayland-scanner
 - libnm, upower-glib, libpulse, goa-1.0, polkit-gobject-1
 - gnome-desktop-4, libsoup-3.0, json-glib-1.0, libpeas-2

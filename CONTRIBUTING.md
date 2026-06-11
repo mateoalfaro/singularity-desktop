@@ -38,6 +38,12 @@ bash scripts/deploy-to-host.sh
 singularity-desktop
 ```
 
+Optional runtime: install `appmenu-gtk-module` (Debian/Ubuntu
+`appmenu-gtk3-module`, Arch AUR `appmenu-gtk-module`, Fedora via COPR) so
+third-party GTK apps publish their menu bar to the panel global menu. First-party
+apps do not need it. Firefox only exports its menu over X11, so its global menu
+shows only under XWayland (`MOZ_ENABLE_WAYLAND=0`).
+
 ---
 
 ## Branching
