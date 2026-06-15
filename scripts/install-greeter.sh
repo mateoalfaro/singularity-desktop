@@ -54,6 +54,11 @@ chmod +x "$GREETD_DIR/greeter-session"
 
 cat > "$GREETD_DIR/start-greeter" <<EOF
 #!/bin/bash
+# labwc and its libsfdo deps live under \$PREFIX/lib; greetd starts this with a
+# clean environment, so put them on the search path (the user session does the
+# same via singularity-labwc-session).
+export LD_LIBRARY_PATH="$PREFIX/lib\${LD_LIBRARY_PATH:+:\$LD_LIBRARY_PATH}"
+export PATH="$BIN:\$PATH"
 for drv in /sys/class/drm/card[0-9]*/device/driver; do
     [ -e "\$drv" ] || continue
     case "\$(basename "\$(readlink -f "\$drv")")" in
@@ -75,8 +80,20 @@ command = "$GREETD_DIR/start-greeter"
 user = "greetd"
 EOF
 
+# greetd runs the greeter as a dedicated unprivileged user. Some distros'
+# packages create it, but immutable/atomic ones (e.g. Vanilla OS) may not,
+# leaving greetd failing with "configured default session user 'greetd' not
+# found". Create it if missing so the install is self-sufficient.
+if ! id greetd >/dev/null 2>&1; then
+    useradd --system --create-home --home-dir /var/lib/greetd \
+        --shell /usr/sbin/nologin greetd 2>/dev/null \
+        || useradd --system --shell /usr/sbin/nologin greetd 2>/dev/null \
+        || true
+fi
 if id greetd >/dev/null 2>&1; then
-    usermod -aG video,render,input greetd 2>/dev/null || true
+    # video + input always exist; render only on some systems.
+    usermod -aG video,input greetd 2>/dev/null || true
+    usermod -aG render greetd 2>/dev/null || true
 fi
 
 if command -v getenforce >/dev/null 2>&1 && [ "$(getenforce)" != "Disabled" ]; then
