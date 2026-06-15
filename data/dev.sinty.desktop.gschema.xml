@@ -20,6 +20,11 @@
       <summary>Autohide the dock</summary>
       <description>When enabled, the dock hides automatically when not in use.</description>
     </key>
+    <key name="dock-enabled" type="b">
+      <default>true</default>
+      <summary>Enable the dock</summary>
+      <description>When disabled, the dock is not shown at all.</description>
+    </key>
     <key name="xkb-layout" type="s">
       <default>'us'</default>
       <summary>Keyboard layout</summary>
