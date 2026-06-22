@@ -104,3 +104,6 @@
 	path = subprojects/singularity-shell
 	url = https://github.com/singularityos-lab/singularity-shell.git
 	branch = main
+[submodule "subprojects/singularity-loginui"]
+	path = subprojects/singularity-loginui
+	url = https://github.com/singularityos-lab/singularity-loginui.git
