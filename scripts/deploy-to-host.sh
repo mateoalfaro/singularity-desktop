@@ -79,7 +79,7 @@ echo "Deploying Singularity to $PREFIX ..."
 echo "Installing binaries..."
 for bin in singularity-desktop \
            singularity-region-picker singularity-screenshot \
-           singularity-polkit-agent singularity-greeter \
+           singularity-polkit-agent singularity-greeter singularity-splash \
            xdg-desktop-portal-singularity singularity-screencast-chooser; do
     bin_path=$(find "$BUILD" -name "$bin" -executable -type f | head -n 1)
     if [ -n "$bin_path" ]; then

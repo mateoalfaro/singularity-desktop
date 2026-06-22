@@ -18,6 +18,7 @@ subproject('singularity-shell')
 subproject('singularity-files')
 subproject('singularity-calculator')
 subproject('singularity-greeter')
+subproject('singularity-splash')
 subproject('singularity-leafs')
 # singularity-browser: archived until feature-complete
 # subproject('singularity-browser')
