@@ -21,6 +21,7 @@ sudo dnf install -y \
   vte291-gtk4-devel \
   gtksourceview5-devel \
   gstreamer1-devel gstreamer1-plugins-base-devel \
+  gstreamer1-plugins-good pipewire-gstreamer \
   libpulse-devel \
   polkit-devel \
   json-glib-devel \
