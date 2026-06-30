@@ -97,14 +97,29 @@
       <summary>Map of action names to custom accelerator strings</summary>
     </key>
     <key name="theme-mode" type="s">
-      <default>'system'</default>
-      <summary>Theme mode</summary>
-      <description>Theme mode (system, light, dark)</description>
+      <default>'dual'</default>
+      <summary>Theme Mode</summary>
+      <description>Appearance mode: 'dual' (dark shell, light apps), 'light' (light shell and apps), or 'dark' (dark shell and apps).</description>
     </key>
     <key name="dark-mode" type="b">
       <default>true</default>
       <summary>Dark Mode</summary>
       <description>Whether dark mode is enabled.</description>
+    </key>
+    <key name="theme-adaptive" type="b">
+      <default>false</default>
+      <summary>Adaptive Theme</summary>
+      <description>When enabled, the appearance follows a daily schedule: the chosen theme-mode during the day and dark at night.</description>
+    </key>
+    <key name="theme-adaptive-from" type="s">
+      <default>'19:00'</default>
+      <summary>Adaptive Night Start</summary>
+      <description>Time of day (HH:MM) at which the adaptive theme switches to dark.</description>
+    </key>
+    <key name="theme-adaptive-to" type="s">
+      <default>'07:00'</default>
+      <summary>Adaptive Night End</summary>
+      <description>Time of day (HH:MM) at which the adaptive theme returns to the chosen day mode.</description>
     </key>
     <key name="developer-mode" type="b">
       <default>false</default>
