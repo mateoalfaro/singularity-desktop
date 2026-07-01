@@ -175,7 +175,7 @@
     <key name="show-desktop-icons" type="b">
       <default>false</default>
       <summary>Show Desktop Icons</summary>
-      <description>Whether to show icons on the desktop from ~/Desktop folder.</description>
+      <description>Whether to show icons from the configured desktop folder.</description>
     </key>
 
     <key name="show-battery-percentage" type="b">

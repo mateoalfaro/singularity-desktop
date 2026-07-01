@@ -232,7 +232,7 @@ msgid "Show Desktop Icons"
 msgstr ""
 
 #: data/dev.sinty.desktop.gschema.xml:143
-msgid "Whether to show icons on the desktop from ~/Desktop folder."
+msgid "Whether to show icons from the configured desktop folder."
 msgstr ""
 
 #: data/dev.sinty.desktop.gschema.xml:148
@@ -1102,7 +1102,7 @@ msgid "Desktop Icons"
 msgstr ""
 
 #: src/components/sidebar/pages/desktop_page.vala:725
-msgid "Display files from ~/Desktop on screen"
+msgid "Display files from your desktop folder on screen"
 msgstr ""
 
 #: src/components/sidebar/pages/desktop_page.vala:732
